@@ -153,7 +153,7 @@ $ cd /home/ubuntu/Fuzz-data/DataImageGeneration
 $ python3 getDataAve.py
 $ python3 getVarghaDelaneyStatistic.py
 ```
-The **getDataAve.py** will generate **table1.tex, table2.tex, and plot1.txt**, which respectively correspond to the generation of the results of **Table 2, Table 3, and Fig 6** in the thesis.The **getVarghaDelaneyStatistic.py** script will generate **stat.txt, stat2.txt, and stat3.txt**, which correspond to the calculation and presentation of the statistically significant values of $\hat{A}_{12}$ and #p in the paper, respectively.
+The **getDataAve.py** will generate **table1.tex, table2.tex, and plot1.txt**, which respectively correspond to the generation of the results of **Table 2, Table 3, and Fig 6** in the thesis.The **getVarghaDelaneyStatistic.py** script will generate **stat.txt, stat2.txt, and stat3.txt**, which correspond to the calculation and presentation of the statistically significant values of **$\hat{A}_{12}$** and **#p** in the paper, respectively.
 
 
 ### Reproduce the experimental results of new bugs:
