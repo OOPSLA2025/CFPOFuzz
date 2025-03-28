@@ -106,7 +106,7 @@ Given the long runtime of the evaluation and the large number of parallel tasks,
 ### Reproduce the experimental results of existing bugs:
 ```bash
 $ cd /home/ubuntu/CFPOfuzz-benchmark
-# source ~/venv/bin/activate
+$ source ~/venv/bin/activate
 # python3 run.py  execute time   test rounds
 $ python3 run.py  24  5
 # wait......
@@ -140,12 +140,21 @@ After the fuzzing is completed, The time to discover the first target input is r
 |——gen_table.py
 ```
 In this context, num**x** represents the results of the **x-th** experiment. The subdirectories under num correspond to different programs, and within each program directory, specific task names (including CVE identifiers) are located. As mentioned earlier, we conducted experimental evaluations using eight different configurations for each task. Therefore, each task contains eight out directories, each with a distinct identifier. These identifiers represent different configurations, recording the time taken to discover the first target input for the same task under different configurations(out1:CFPO*+IP; out2：CFPO*+IP+COV; out3:CFPO*; out4:CFPO*+COV; out5:COV+IP; out6:CFPO+IP; out7:CFPO; out8:COV) 
-After completing five rounds of experiments, you can collect, organize, and compute the experimental data using the following command. The final results will be presented in the **table.tex** file.
+After completing five rounds of experiments, you can collect, organize, and compute the experimental data using the following command. The final results will be presented in the **table.tex** file, which contains the average time of five rounds for the eight configurations of all known bugs.
 
 ```
 $ cd /home/ubuntu/Fuzz-data
 $ python3 gen_table.py
 ```
+The generation of the results of the charts and images in the thesis is implemented in `/home/ubuntu/Fuzz-data/DataImageGeneration`. You can navigate to this directory to conduct partial experimental calculations and reproduce the demonstrations.
+
+```
+$ cd /home/ubuntu/Fuzz-data/DataImageGeneration
+$ python3 getDataAve.py
+$ python3 getVarghaDelaneyStatistic.py
+```
+The **getDataAve.py** will generate **table1.tex, table2.tex, and plot1.txt**, which respectively correspond to the generation of the results of **Table 2, Table 3, and Fig 6** in the thesis.The **getVarghaDelaneyStatistic.py** script will generate **stat.txt, stat2.txt, and stat3.txt**, which correspond to the calculation and presentation of the statistically significant values of $\hat{A}_{12}$ and #p in the paper, respectively.
+
 
 ### Reproduce the experimental results of new bugs:
 In the experiment, we discovered seven previously unknown zero-day bugs (LN1, LN2, LN3, MJ5, LV3, LV4, TD4) in real-world programs. These bugs include types such as floating-point exception, null pointer dereference, out-of-bounds access, infinite loop, and denial of service. In```/home/ubuntu/New-bug```, we have stored the source code for all the zero-day bugs, the inputs that trigger the bugs, and our abstracted event properties along with the results after instrumentation. Specifically, the inputs that trigger the bugs are located in ```/home/ubuntu/New-bug/NewCrash```. Following the guidance in this section, you can use our method to discover the inputs that trigger these bugs one by one.
@@ -153,6 +162,7 @@ In the experiment, we discovered seven previously unknown zero-day bugs (LN1, LN
 Using ```LN3``` as an example, we first navigate to the source code directory of ```LN3```.
 ```
 $ cd /home/ubuntu/Newbug/Luna/luna-cfg3
+
 ```
 
 You will see our MOP file with the following content (``luna.mop``).
