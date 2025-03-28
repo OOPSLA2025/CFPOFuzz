@@ -14,12 +14,12 @@ We assume that the following commands are run in sudo mode.
 
 Firstly, pull the already prebuilt docker image from [docker hub](https://hub.docker.com/r/cfpofuzz/cfpofuzz). Please make sure its name is `cfpofuzz/cfpofuzz`.
 ```sh
-$ docker pull fse25/cfpofuzz:v2
+$ docker pull cfpofuzz/cfpofuzz:v1
 ```
 
-If everything is ok, a `fse25/cfpofuzz` image should be found in the images listed by `docker images` command. Then, you can create a container of such image and start a Bash session using the following command. An interactive `bash` shell on the container is also executed at the moment.
+If everything is ok, a `cfpofuzz/cfpofuzz:v1` image should be found in the images listed by `docker images` command. Then, you can create a container of such image and start a Bash session using the following command. An interactive `bash` shell on the container is also executed at the moment.
 ```sh
-$ docker run -it fse25/cfpofuzz:v2 bash
+$ docker run -it cfpofuzz/cfpofuzz:v1
 ```
 
 If all goes well, the container should be running successfully. Otherwise, you can seek help from [Docker Doc](https://docs.docker.com/) if needed. 
@@ -27,16 +27,16 @@ If all goes well, the container should be running successfully. Otherwise, you c
 Now, navigate into the directory containing our experimental environment and list the contents. 
 ```sh
 $ cd /home/ubuntu/ && ls
-CFPOfuzz /  CFPOfuzz-Benchmark / Fuzzdata /  Newbug / LLVM / demo /
+CFPOfuzz /  CFPOfuzz-Benchmark / Fuzzdata / LLVM / Newbug / demo /
 
 $ cd /home/ubuntu/CFPOfuzz && ls
 AFL-cfpo /  antlr  /  ccmop  /  rv-monitor /  wcompiler / AFLnet-cfpo / aspectc / examples / wac-pass
 
-$ cd /home/ubuntu/CFPOfuzz-benchmark && ls
-Exiv2 / Live555 / Mujs / OpenSSL / TinyDTLS / luna / run.py
+$ cd /home/ubuntu/CFPOfuzz-Benchmark && ls
+Exiv2 / Live555 / Mujs / OpenSSL / TinyDTLS /  lua  / luna / run.py
 
 $ cd /home/ubuntu/Fuzzdata && ls
-data / data1 / gen_table.py / table.tex
+DataImageGeneration / data / data1 / gen_table.py / table.tex
 
 $ cd /home/ubuntu/Newbug && ls
 Live555 / Luna / Mujs / NewCrash / TinyDTLS
@@ -106,6 +106,7 @@ Given the long runtime of the evaluation and the large number of parallel tasks,
 ### Reproduce the experimental results of existing bugs:
 ```bash
 $ cd /home/ubuntu/CFPOfuzz-benchmark
+# source ~/venv/bin/activate
 # python3 run.py  execute time   test rounds
 $ python3 run.py  24  5
 # wait......
